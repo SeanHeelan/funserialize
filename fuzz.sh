@@ -14,6 +14,8 @@ OUTPUT_DIR="afl_working_dir"
 SCREEN_SESS_NAME="fuzz"
 SLAVE_COUNT=1
 
+CPU_COUNT=$(grep -c ^processor /proc/cpuinfo)
+
 set -e
 function ret_to_origin {
 	cd "$ORIGIN"
@@ -27,6 +29,11 @@ fi
 
 OUTPUT_DIR=$1
 SLAVE_COUNT=$2
+
+if [[ "$SLAVE_COUNT" -gt "$((CPU_COUNT - 1))" ]]; then
+	echo "[!] You do not have enough cores to run that many slaves"
+	exit 1
+fi
 
 if [[ ! -f "$AFL_BIN" || ! -f "$PHP_BIN" ]]; then
 	echo -n "[!] The AFL or PHP binaries are missing. Run get.sh and "
