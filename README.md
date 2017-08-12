@@ -1,16 +1,20 @@
 # funserialize
-Scripts and auxiliary files for fuzzing PHP's unserialize function
+Scripts and auxiliary files for fuzzing PHP's unserialize function. See
+https://sean.heelan.io/ for details.
 
 # Dependencies
 
 GNU screen
+
 clang (optional)
 
 # Usage
 
 `get.sh` retrieves the source for PHP and afl.
+
 `build.sh` builds both PHP and afl. If you have `clang` available then
 `afl-clang-fast` will also be built.
+
 `fuzz.sh` starts a master afl instance and multiple slaves inside a GNU screen
 instance with the session name `fuzz`.
 
