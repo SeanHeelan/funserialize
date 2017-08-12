@@ -49,7 +49,7 @@ fi
 echo "[+] Starting AFL (using $OUTPUT_DIR as the output directory) ..."
 screen -dmAS "$SCREEN_SESS_NAME" -t master \
 	"$AFL_BIN" -m "$MEM_LIMIT" -i "$SEEDS" -o \
-	"$OUTPUT_DIR" -x "$DICTIONARY" -M -- "$PHP_BIN" "$DRIVER" @@
+	"$OUTPUT_DIR" -x "$DICTIONARY" -M master -- "$PHP_BIN" "$DRIVER" @@
 
 for i in $(seq 1 "$SLAVE_COUNT"); do
 	echo "[+] Starting slave $i ..."
