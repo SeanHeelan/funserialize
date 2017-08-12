@@ -31,6 +31,8 @@ A normal session might look as follows:
 <...>
 
 ./fuzz.sh output_dir 3
+
+<...>
 ```
 
 The final command will start a master afl instance and 3 slaves, with
