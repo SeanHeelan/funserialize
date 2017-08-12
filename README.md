@@ -1,6 +1,7 @@
 # funserialize
 Scripts and auxiliary files for fuzzing PHP's unserialize function. See
-https://sean.heelan.io/ for details.
+https://sean.heelan.io/2017/08/12/fuzzing-phps-unserialize-function/ for
+details.
 
 # Dependencies
 
