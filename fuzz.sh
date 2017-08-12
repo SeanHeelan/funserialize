@@ -17,10 +17,6 @@ SLAVE_COUNT=1
 CPU_COUNT=$(grep -c ^processor /proc/cpuinfo)
 
 set -e
-function ret_to_origin {
-	cd "$ORIGIN"
-}
-trap ret_to_origin EXIT
 
 if [[ ! "$#" -eq 2 ]]; then
 	echo "[!] Usage: fuzz.sh outputdir slavecount"
