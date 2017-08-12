@@ -33,4 +33,6 @@ A normal session might look as follows:
 ```
 
 The final command will start a master afl instance and 3 slaves, with
-`output_dir` used as the top level output directory for afl.
+`output_dir` used as the top level output directory for afl. You can run `screen
+-r fuzz` to attach to the screen instance and view the progress of the fuzzing
+session.
