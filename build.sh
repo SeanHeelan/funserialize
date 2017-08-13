@@ -65,6 +65,7 @@ echo "[+] Building PHP with $AFL_CC ..."
 cd "$PHP_DIR"
 ./buildconf --force
 ./configure CC="$AFL_CC" --prefix="$PHP_INSTALL_DIR"
+export AFL_USE_ASAN=1
 make -j `grep -c ^processor /proc/cpuinfo`
 make install
 
