@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 DOWNLOADS_DIR=`pwd`/downloads
 PHP_DST="$DOWNLOADS_DIR/php-src"
 AFL_DST="$DOWNLOADS_DIR/afl-2.49b"
@@ -7,8 +9,6 @@ PHP_GIT="https://github.com/php/php-src.git"
 AFL_VER="2.49b"
 AFL_TGZ="afl-2.49b.tgz"
 AFL_URL="http://lcamtuf.coredump.cx/afl/releases/$AFL_TGZ"
-
-set -e
 
 if [[ ! -d "$DOWNLOADS_DIR" ]]; then
 	echo "[+] Creating downloads directory ..."
