@@ -1,14 +1,15 @@
 # funserialize
 Scripts and auxiliary files for fuzzing PHP's unserialize function. See
-https://sean.heelan.io/ for details.
+https://sean.heelan.io/2017/08/12/fuzzing-phps-unserialize-function/ for
+details.
 
-# Dependencies
+## Dependencies
 
 GNU screen
 
 clang (optional)
 
-# Usage
+## Usage
 
 `get.sh` retrieves the source for PHP and afl.
 
@@ -30,6 +31,8 @@ A normal session might look as follows:
 <...>
 
 ./fuzz.sh output_dir 3
+
+<...>
 ```
 
 The final command will start a master afl instance and 3 slaves, with
