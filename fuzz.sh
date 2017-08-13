@@ -5,7 +5,7 @@ AFL_BIN="$ORIGIN/downloads/afl-2.49b/afl-fuzz"
 PHP_BIN="$ORIGIN/downloads/php-src/install/bin/php"
 
 # Fuzzer configuration vars
-MEM_LIMIT=500
+MEM_LIMIT="none"
 SEEDS="$ORIGIN/aux/seeds/"
 DRIVER="$ORIGIN/aux/driver.php"
 DICTIONARY="$ORIGIN/aux/dictionary.txt"
@@ -43,17 +43,16 @@ if ! hash screen 2>/dev/null; then
 fi
 
 echo "[+] Starting AFL (using $OUTPUT_DIR as the output directory) ..."
-screen -dmAS "$SCREEN_SESS_NAME" -t master \
-	"$AFL_BIN" -m "$MEM_LIMIT" -i "$SEEDS" -o \
-	"$OUTPUT_DIR" -x "$DICTIONARY" -M master -- "$PHP_BIN" "$DRIVER" @@
+CMD="USE_ZEND_ALLOC=0 $AFL_BIN -m $MEM_LIMIT -i $SEEDS -o $OUTPUT_DIR "
+CMD="${CMD}-x $DICTIONARY -M master -- $PHP_BIN $DRIVER @@"
+screen -dmAS "$SCREEN_SESS_NAME" -t master -c aux/screenrc bash -ic "$CMD"
 
 for i in $(seq 1 "$SLAVE_COUNT"); do
 	echo "[+] Starting slave $i ..."
 	NAME="slave$i"
-	screen -S "$SCREEN_SESS_NAME" -X screen -t "$NAME" \
-		"$AFL_BIN" -m "$MEM_LIMIT" -i "$SEEDS" \
-		-o "$OUTPUT_DIR" -x "$DICTIONARY" -S "$NAME" -- \
-		"$PHP_BIN" "$DRIVER" @@
+	CMD="USE_ZEND_ALLOC=0 $AFL_BIN -m $MEM_LIMIT -i $SEEDS -o $OUTPUT_DIR "
+	CMD="${CMD}-x $DICTIONARY -S $NAME -- $PHP_BIN $DRIVER @@"
+	screen -S "$SCREEN_SESS_NAME" -X screen -t "$NAME" bash -ic "$CMD"
 done
 
 echo "[+] Fuzzing started. Attach via 'screen -r $SCREEN_SESS_NAME'"
