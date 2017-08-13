@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
+set -e
+
 ORIGIN=`pwd`
 AFL_DIR="$ORIGIN/downloads/afl-2.49b"
 PHP_DIR="$ORIGIN/downloads/php-src"
 PHP_INSTALL_DIR="$PHP_DIR/install"
 
-set -e
 function ret_to_origin {
 	cd "$ORIGIN"
 }
