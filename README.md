@@ -3,13 +3,13 @@ Scripts and auxiliary files for fuzzing PHP's unserialize function. See
 https://sean.heelan.io/2017/08/12/fuzzing-phps-unserialize-function/ for
 details.
 
-# Dependencies
+## Dependencies
 
 GNU screen
 
 clang (optional)
 
-# Usage
+## Usage
 
 `get.sh` retrieves the source for PHP and afl.
 
