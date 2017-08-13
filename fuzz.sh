@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 ORIGIN=`pwd`
 AFL_BIN="$ORIGIN/downloads/afl-2.49b/afl-fuzz"
 PHP_BIN="$ORIGIN/downloads/php-src/install/bin/php"
@@ -15,8 +17,6 @@ SCREEN_SESS_NAME="fuzz"
 SLAVE_COUNT=1
 
 CPU_COUNT=$(grep -c ^processor /proc/cpuinfo)
-
-set -e
 
 if [[ ! "$#" -eq 2 ]]; then
 	echo "[!] Usage: fuzz.sh outputdir slavecount"
